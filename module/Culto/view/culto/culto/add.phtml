@@ -1,0 +1,69 @@
+<?php
+
+$title = 'Novo Lançamento.';
+$this->headTitle($title);
+?>
+<hr>
+<div class="col-md-8 col-md-offset-2">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<?php echo $this->escapeHtml($title); ?>
+			</div>
+		</div>
+
+		<?php 
+		$form = $this->form;
+		$form->setAttribute('action',
+				$this->url(
+					'culto',
+					array(	'controller' => 'CultoController',
+							'action'=>'add'
+					)));
+
+		$form->setAttribute('class', 'form-horizontal');
+		$form->prepare();
+
+		echo $this->form()->openTag($form);
+		echo $this->formHidden($form->get('id'));
+		?>
+
+		<div class="panel-body">
+			<?php echo $this->formRow($form->get('cultoData')); ?>
+			<?php echo $this->formRow($form->get('nomePastor')); ?>
+			<?php echo $this->formRow($form->get('preletor')); ?>
+			<?php echo $this->formRow($form->get('reuniao')); ?>
+			<?php echo $this->formRow($form->get('tema')); ?>
+			<?php echo $this->formRow($form->get('txtBiblico')); ?>
+			<?php echo $this->formRow($form->get('numPessoas')); ?>
+			<?php echo $this->formRow($form->get('numLideres')); ?>
+			<?php echo $this->formRow($form->get('numConsolid')); ?>
+			<?php echo $this->formRow($form->get('dnhDizimos')); ?>
+			<?php echo $this->formRow($form->get('chqDizimos')); ?>
+			<?php echo $this->formRow($form->get('moeDizimos')); ?>
+			<?php echo $this->formRow($form->get('dnhOfertas')); ?>
+			<?php echo $this->formRow($form->get('chqOfertas')); ?>
+			<?php echo $this->formRow($form->get('moeOfertas')); ?>
+			<?php echo $this->formRow($form->get('dnhParcDeus')); ?>
+			<?php echo $this->formRow($form->get('chqParcDeus')); ?>
+			<?php echo $this->formRow($form->get('moeParcDeus')); ?>
+			<?php echo $this->formRow($form->get('imgAnexo')); ?>
+		</div>
+	</div>
+
+	<div class="panel-footer">
+		<?php echo $this->formSubmit($form->get('submit')); ?>
+
+		<a href="<?php echo $this->url('culto'); ?>" class="btn btn-default">Voltar</a>
+	</div>
+	<?php echo $this->form()->closeTag(); ?>
+</div>
+<?php $this->headScript()->captureStart();?>
+jQuery(function($) { $("#cultoData").mask("99/99/9999"); });
+
+$(function() { $("#dnhDizimos, #chqDizimos, #moeDizimos, #dnhOfertas,
+#chqOfertas,#moeOfertas, #dnhParcDeus, #chqParcDeus,
+#moeParcDeus").maskMoney({prefix:'R$ ', allowNegative: true,
+thousands:'.', decimal:',', affixesStay: false}); })
+
+<?php $this->headScript()->captureEnd();?>

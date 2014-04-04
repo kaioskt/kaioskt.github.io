@@ -1,0 +1,64 @@
+    <?php
+
+		$title = 'Novo Lançamento.';
+		$this->headTitle($title);
+		?>
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Editar o Relatorio com ID: <?php echo $this->id; ?>  
+				</div>
+			</div>
+    
+    <?php 
+	$form = $this->form;
+	$form->setAttribute('action',
+			$this->url(
+					'culto',
+					array(	'controller' => 'CultoController',
+							'action' => 'edit',
+							'id'     => $this->id,
+					)));
+
+	$form->setAttribute('class', 'form-horizontal');
+	$form->prepare();
+
+	echo $this->form()->openTag($form);
+	?>
+	
+
+    				
+        <div class="panel-body">
+        
+                   <?php echo $this->formRow($form->get('cultoData')); ?>
+                    <?php echo $this->formRow($form->get('nomePastor')); ?>
+                    <?php echo $this->formRow($form->get('preletor')); ?>
+                    <?php echo $this->formRow($form->get('reuniao')); ?>
+                   <?php echo $this->formRow($form->get('tema')); ?>
+                    <?php echo $this->formRow($form->get('txtBiblico')); ?>
+                    <?php echo $this->formRow($form->get('numPessoas')); ?>
+                    <?php echo $this->formRow($form->get('numLideres')); ?>
+                    <?php echo $this->formRow($form->get('numConsolid')); ?>
+                    <?php echo $this->formRow($form->get('dnhDizimos')); ?>
+                    <?php echo $this->formRow($form->get('chqDizimos')); ?>
+                    <?php echo $this->formRow($form->get('moeDizimos')); ?>
+                    <?php echo $this->formRow($form->get('dnhOfertas')); ?>
+                    <?php echo $this->formRow($form->get('chqOfertas')); ?>
+                    <?php echo $this->formRow($form->get('moeOfertas')); ?>
+                    <?php echo $this->formRow($form->get('dnhParcDeus')); ?>
+                    <?php echo $this->formRow($form->get('chqParcDeus')); ?>
+                    <?php echo $this->formRow($form->get('moeParcDeus')); ?>
+                    <?php echo $this->formRow($form->get('imgAnexo')); ?>
+        </div>
+        <div class="panel-footer">
+            <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+            <button type="submit" class="btn btn-primary">Atualizar registro.</button>
+				
+            <a href="<?php echo $this->url('culto'); ?>" class="btn btn-default">Voltar</a>
+        </div>
+    <?php echo $this->form()->closeTag(); ?>
+</div>
+</div>
+
+	
